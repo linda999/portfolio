@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linda Kunene — Instructional Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0B09;
+  --surface:#171410;
+  --card:#1F1B17;
+  --card-hover:#252117;
+  --border:#2E2820;
+  --accent:#C9974A;
+  --accent-light:#E8C07A;
+  --text:#EDE8DF;
+  --text-muted:#8C8378;
+  --text-dim:#5A554F;
+  --radius:12px;
+  --radius-sm:8px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,11,9,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);letter-spacing:.02em;text-decoration:none}
+.nav-name span{color:var(--accent)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#0D0B09;font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:8px 20px;border-radius:var(--radius-sm);text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--accent-light)}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 40px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(201,151,74,.07) 0%,transparent 65%);pointer-events:none}
+.hero-eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--accent)}
+.hero-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,7vw,6.5rem);font-weight:300;line-height:1.05;letter-spacing:-.01em;margin-bottom:32px;max-width:900px}
+.hero-headline em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:520px;line-height:1.75;margin-bottom:48px}
+.hero-stats{display:flex;gap:48px;padding-top:32px;border-top:1px solid var(--border)}
+.stat-item{display:flex;flex-direction:column;gap:4px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--text);line-height:1}
+.stat-label{font-size:.78rem;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-dim);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--text-dim),transparent);animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ─── ABOUT STRIP ─── */
+.about-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;line-height:1.25;color:var(--text)}
+.about-headline strong{font-weight:600;color:var(--accent)}
+.about-body p{color:var(--text-muted);font-size:.95rem;line-height:1.8;margin-bottom:16px}
+.about-body p:last-child{margin-bottom:0}
+.skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.skill-tag{background:var(--card);border:1px solid var(--border);color:var(--text-muted);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;padding:6px 14px;border-radius:40px}
+
+/* ─── PORTFOLIO ─── */
+.portfolio{padding:100px 40px}
+.section-header{display:flex;flex-direction:column;gap:8px;margin-bottom:56px}
+.section-label{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:56px}
+.filter-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:8px 20px;border-radius:40px;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#0D0B09;font-weight:500}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* ─── PROJECT CARD ─── */
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s,background .25s;display:flex;flex-direction:column}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(201,151,74,.35);background:var(--card-hover)}
+.project-card.hidden{display:none}
+.card-image{height:200px;overflow:hidden;position:relative;background:var(--surface)}
+.card-image-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.card-img-pattern{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;opacity:.12;user-select:none;letter-spacing:-.05em;color:var(--accent)}
+.card-body{padding:28px;flex:1;display:flex;flex-direction:column;gap:16px}
+.card-category{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;line-height:1.25;color:var(--text)}
+.card-desc{font-size:.88rem;color:var(--text-muted);line-height:1.7;flex:1}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:20px;border-top:1px solid var(--border)}
+.card-impact{font-size:.8rem;color:var(--text-dim)}
+.card-impact strong{color:var(--accent-light);display:block;font-size:1rem;font-weight:500;margin-bottom:2px}
+.card-arrow{width:32px;height:32px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .2s;font-size:.9rem}
+.project-card:hover .card-arrow{background:var(--accent);border-color:var(--accent);color:#0D0B09}
+
+/* ─── MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);max-width:780px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-header{padding:40px 44px 32px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:24px;position:sticky;top:0;background:var(--surface);z-index:1}
+.modal-meta{display:flex;flex-direction:column;gap:8px}
+.modal-category{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.2;color:var(--text)}
+.modal-close{background:transparent;border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.modal-close:hover{background:var(--card);color:var(--text)}
+.modal-body{padding:40px 44px}
+.modal-section{margin-bottom:40px}
+.modal-section:last-child{margin-bottom:0}
+.modal-section-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.modal-section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.modal-section p{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:12px}
+.modal-section p:last-child{margin-bottom:0}
+.modal-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.modal-list li{font-size:.92rem;color:var(--text-muted);line-height:1.7;padding-left:20px;position:relative}
+.modal-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.8rem;top:.15em}
+.impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:4px}
+.impact-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;display:flex;flex-direction:column;gap:6px}
+.impact-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--accent-light);line-height:1}
+.impact-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5}
+.tools-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tool-badge{background:var(--card);border:1px solid var(--border);color:var(--text-muted);font-size:.75rem;padding:5px 13px;border-radius:40px}
+
+/* ─── PROCESS SECTION ─── */
+.process-steps{display:flex;flex-direction:column;gap:16px}
+.process-step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:flex-start}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--accent);opacity:.5;line-height:1;min-width:32px}
+.step-content h4{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:6px}
+.step-content p{font-size:.85rem;color:var(--text-muted);line-height:1.65}
+
+/* ─── CONTACT ─── */
+.contact{background:var(--surface);border-top:1px solid var(--border);padding:100px 40px;text-align:center}
+.contact-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;line-height:1.15;margin-bottom:20px}
+.contact-headline em{font-style:italic;color:var(--accent)}
+.contact-sub{color:var(--text-muted);font-size:.95rem;margin-bottom:44px}
+.contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.contact-link{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:40px;text-decoration:none;font-size:.85rem;letter-spacing:.04em;font-weight:500;transition:all .2s}
+.contact-link.primary{background:var(--accent);color:#0D0B09}
+.contact-link.primary:hover{background:var(--accent-light)}
+.contact-link.secondary{border:1px solid var(--border);color:var(--text-muted)}
+.contact-link.secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ─── FOOTER ─── */
+footer{padding:24px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.78rem;color:var(--text-dim)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+  .about-strip{grid-template-columns:1fr}
+  .hero-stats{gap:28px}
+}
+@media(max-width:640px){
+  nav{padding:0 20px}
+  .hero,.portfolio,.contact{padding-left:20px;padding-right:20px}
+  .about-strip{padding:48px 20px}
+  .projects-grid{grid-template-columns:1fr}
+  .modal-header,.modal-body{padding:28px 24px}
+  .nav-links,.nav-cta{display:none}
+  .hero-stats{flex-wrap:wrap;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Linda <span>Kunene</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:hello@lindakunene.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Instructional Designer · Johannesburg, SA</div>
+  <h1 class="hero-headline">Learning that <em>challenges,</em><br>engages, and sticks.</h1>
+  <p class="hero-sub">I design high-impact learning experiences — from blended university courses to AI-powered eLearning — that bridge the gap between dense content and genuine understanding.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">6+</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">40%</span>
+      <span class="stat-label">Faster Content Analysis with AI</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">University Courses Transformed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">AI Tools in Daily Workflow</span>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section id="about" class="about-strip">
+  <div>
+    <h2 class="about-headline">An ID who bridges <strong>academic rigour</strong> and <strong>modern digital learning.</strong></h2>
+  </div>
+  <div class="about-body">
+    <p>I'm a Johannesburg-based Instructional Designer with a passion for game-based learning, AI-augmented design, and building courses that learners actually want to complete.</p>
+    <p>My work spans higher education, enterprise L&D, and gamified eLearning — always with accessibility and measurable outcomes at the centre.</p>
+    <div class="skills-row">
+      <span class="skill-tag">Blended Learning</span>
+      <span class="skill-tag">AI-Augmented Design</span>
+      <span class="skill-tag">Gamification</span>
+      <span class="skill-tag">Storyboarding</span>
+      <span class="skill-tag">Branching Scenarios</span>
+      <span class="skill-tag">Articulate Storyline</span>
+      <span class="skill-tag">Rise 360</span>
+      <span class="skill-tag">WCAG Accessibility</span>
+      <span class="skill-tag">Infographics</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="work" class="portfolio">
+  <div class="section-header">
+    <span class="section-label">Selected Work</span>
+    <h2 class="section-title">Case Studies</h2>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="higher-ed">Higher Education</button>
+    <button class="filter-btn" data-filter="ai">AI & Innovation</button>
+    <button class="filter-btn" data-filter="enterprise">Enterprise L&D</button>
+    <button class="filter-btn" data-filter="gamification">Gamification</button>
+    <button class="filter-btn" data-filter="storyboarding">Storyboarding</button>
+    <button class="filter-btn" data-filter="visual">Visual Design</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Card 1 -->
+    <div class="project-card" data-category="higher-ed" data-project="wits" tabindex="0" role="button" aria-label="Open Wits University case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">Wits</div></div></div>
+      <div class="card-body">
+        <span class="card-category">Higher Education</span>
+        <h3 class="card-title">Wits University: Blended Learning Transformation</h3>
+        <p class="card-desc">Transformed the Health Systems Science course from 100% face-to-face to a high-engagement blended format — rigorous enough for a medical faculty, accessible for first-years.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>HSS1 → HSS2</strong>Partnership extended to 2nd year</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="project-card" data-category="ai" data-project="ai-copilot" tabindex="0" role="button" aria-label="Open AI-Augmented ID case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">AI</div></div></div>
+      <div class="card-body">
+        <span class="card-category">AI & Innovation</span>
+        <h3 class="card-title">AI-Augmented Instructional Design: The Co-Pilot Methodology</h3>
+        <p class="card-desc">A 3-stage framework for using LLMs as a design co-pilot — from macro content analysis to scenario scripting, always with a human-in-the-loop QA phase.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>~40% faster</strong>Content analysis phase</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="project-card" data-category="enterprise" data-project="genai" tabindex="0" role="button" aria-label="Open GenAI Academy case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">GenAI</div></div></div>
+      <div class="card-body">
+        <span class="card-category">Enterprise L&D</span>
+        <h3 class="card-title">GenAI Academy: Enterprise AI Literacy Curriculum</h3>
+        <p class="card-desc">Designed a multi-pathway learning journey to build AI literacy across an entire organisation — tool-agnostic, interactive, and built for real-world application.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>3 AI Tools</strong>Gemini, ChatGPT & Copilot</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="project-card" data-category="gamification" data-project="ada" tabindex="0" role="button" aria-label="Open ADA Scavenger Hunt case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">ADA</div></div></div>
+      <div class="card-body">
+        <span class="card-category">Gamification</span>
+        <h3 class="card-title">ADA Resource Scavenger Hunt: Gamified eLearning</h3>
+        <p class="card-desc">Converted dry practice-test material into an 8-module gamified scavenger hunt — with an ADA toolkit mechanic, badges, and a scavenger-hunt map that drove genuine engagement.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>8 Modules</strong>Badge per module + completion</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="project-card" data-category="storyboarding" data-project="storyboard" tabindex="0" role="button" aria-label="Open Storyboarding case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">SB</div></div></div>
+      <div class="card-body">
+        <span class="card-category">Storyboarding</span>
+        <h3 class="card-title">High-Fidelity Storyboarding for Multi-Disciplinary Teams</h3>
+        <p class="card-desc">My storyboards are functional blueprints — explicit developer logic, voiceover cues, branching triggers, and hotspot interactions — that eliminate post-production rework.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>1:1 parity</strong>SME spec to final build</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="project-card" data-category="visual" data-project="infographics" tabindex="0" role="button" aria-label="Open Infographics case study">
+      <div class="card-image"><div class="card-image-inner"><div class="card-img-pattern">IG</div></div></div>
+      <div class="card-body">
+        <span class="card-category">Visual Design</span>
+        <h3 class="card-title">Visual Synthesis: Academic Research to Infographics</h3>
+        <p class="card-desc">Distilled dense academic journal articles on game-based learning into high-impact, digestible infographics — proving that learning theory can be both rigorous and beautiful.</p>
+        <div class="card-footer">
+          <div class="card-impact"><strong>GBL Focus</strong>MDA, Rewards & Learning Models</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2 class="contact-headline">Have a project<br>in <em>mind?</em></h2>
+  <p class="contact-sub">Let's design learning experiences that actually make a difference.</p>
+  <div class="contact-links">
+    <a href="mailto:hello@lindakunene.com" class="contact-link primary">Send me an email</a>
+    <a href="https://lindakunene99.wordpress.com/" target="_blank" class="contact-link secondary">View blog</a>
+    <a href="https://www.linkedin.com/in/linda-kunene" target="_blank" class="contact-link secondary">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Linda Kunene. Instructional Designer, Johannesburg.</p>
+  <p>Built with intention.</p>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- PROJECT DATA -->
+<script>
+const projects = {
+  wits: {
+    category: 'Higher Education',
+    title: 'Wits University: Blended Learning Transformation',
+    overview: 'The University of the Witwatersrand partnered with me to transform their Health Systems Science 1 (HSS1) course — a dense, clinically rigorous first-year module — from a 100% face-to-face format into a high-engagement blended learning experience.',
+    challenge: 'The curriculum involved dense medical and operational content from the Health Sciences faculty that needed to remain rigorous while becoming far more accessible for first-year students who were new to both the subject matter and digital learning.',
+    process: [
+      { num: '01', title: 'SME Partnership & Learning Journey Mapping', body: 'Collaborated closely with academic and operational staff to map out learning journeys and identify "digital-first" opportunities within the existing curriculum.' },
+      { num: '02', title: 'Instructional Alignment', body: 'Led end-to-end design, ensuring that every digital asset — assessments, multimedia, interactives — was mapped directly to specific clinical and health system outcomes.' },
+      { num: '03', title: 'Flipped Classroom Modernisation', body: 'Leveraged instructional design models to create a flipped classroom approach, prioritising active learning over passive consumption of medical theory.' }
+    ],
+    impact: [
+      { num: 'HSS2', desc: 'Partnership extended to the second-year course due to measurable success' },
+      { num: 'Global', desc: 'Framework established as a standard for blended learning in the faculty' }
+    ],
+    tools: ['Articulate Rise', 'Articulate Storyline', 'LMS Integration', 'ADDIE Model']
+  },
+  'ai-copilot': {
+    category: 'AI & Innovation',
+    title: 'AI-Augmented Instructional Design: The Co-Pilot Methodology',
+    overview: 'I developed a structured 3-stage methodology for using large language models as an instructional design co-pilot — accelerating content development without compromising pedagogical quality or clinical accuracy.',
+    challenge: 'The core challenge: how do you bridge the gap between high-volume, technical source material and learner-ready content while maintaining both pedagogical integrity and domain accuracy? AI without oversight risks hallucination; human-only without AI misses speed.',
+    process: [
+      { num: '01', title: 'Analysis & Macro-Chunking', body: 'Using LLMs to synthesise dense technical whitepapers or medical transcripts. AI rapidly identifies "Must-Know" vs "Nice-to-Know" information, reducing the initial content analysis phase by approximately 40%.' },
+      { num: '02', title: 'Iterative Design & Scenario Scripting', body: 'Applying persona-based prompting to transform flat facts into realistic, healthcare-specific branching scenarios. Generates diverse distractors and realistic patient–provider dialogues aligned to real clinical challenges.' },
+      { num: '03', title: 'Quality Assurance & Human-in-the-Loop', body: 'Rigorous vetting of all AI outputs for brand tone, WCAG accessibility, and pedagogical soundness. AI drives speed; the human ensures the final product is evidence-based and instructionally sound.' }
+    ],
+    impact: [
+      { num: '~40%', desc: 'Reduction in initial content analysis time' },
+      { num: '3', desc: 'LLMs actively used in daily workflow' }
+    ],
+    tools: ['Google Gemini', 'ChatGPT-4', 'Claude', 'Custom GPTs', 'Chain-of-Thought Prompting']
+  },
+  genai: {
+    category: 'Enterprise L&D',
+    title: 'GenAI Academy: Enterprise AI Literacy Curriculum',
+    overview: 'Designed a multi-pathway learning journey to build enterprise-wide AI literacy — taking employees from foundational GenAI understanding to confident, responsible real-world application across multiple tools.',
+    challenge: 'Enterprise AI training often fails because it either goes too deep into the technology or stays too shallow on application. The goal was to design something tool-agnostic yet immediately practical, that works for learners across functions and technical backgrounds.',
+    process: [
+      { num: '01', title: 'Custom Asset Creation', body: 'Developed bespoke instructional graphics using Adobe Express to simplify complex prompt engineering concepts — making abstract ideas like "tokens", "temperature settings", and "context windows" visually intuitive.' },
+      { num: '02', title: 'High-Interactivity Design', body: 'Engineered complex branching scenarios and drag-and-drop interactions (e.g., ordering Chain-of-Thought prompting steps) to move learners beyond passive content consumption into active decision-making.' },
+      { num: '03', title: 'Tool-Agnostic Framework', body: 'Balanced technical foundations with practical application across Gemini, ChatGPT, and Microsoft Copilot — so learners could apply skills regardless of which tool their organisation uses.' }
+    ],
+    impact: [
+      { num: '3', desc: 'AI tools covered: Gemini, ChatGPT, Copilot' },
+      { num: 'Multi', desc: 'Pathways for different roles and skill levels' }
+    ],
+    tools: ['Adobe Express', 'Articulate Storyline', 'Rise 360', 'Custom GPTs', 'Instructional Graphics']
+  },
+  ada: {
+    category: 'Gamification',
+    title: 'ADA Resource Scavenger Hunt: Gamified eLearning',
+    overview: 'A training company needed their ADA (Americans with Disabilities Act) practice-test material transformed into something learners would actually engage with. The result: an 8-module scavenger hunt eLearning experience built on Teachable, with an in-course ADA toolkit, badge rewards, and a cohesive island-map navigation.',
+    challenge: 'Practice-test content is inherently passive and easily forgotten. The challenge was to create an experience that built genuine ADA understanding through application — not memorisation — while remaining fully accessible for learners with disabilities (a critical consideration given the subject matter).',
+    process: [
+      { num: '01', title: 'Scavenger Hunt Structure', body: 'Designed each module as a distinct "location" on an island map — learners progress visually through a journey rather than a linear module list, creating a sense of exploration and reward.' },
+      { num: '02', title: 'Toolkit Mechanic', body: 'Rather than answering from memory, learners open an in-course ADA "toolkit" to find resources and apply them to scenario-based questions. This shifts learning from recall to genuine application.' },
+      { num: '03', title: 'Accessible & Inclusive Gamification', body: 'Gamification was designed to support learning, not distract from it. Predictable navigation, consistent layouts, reduced cognitive load, and clear visual hierarchy ensured full accessibility.' }
+    ],
+    impact: [
+      { num: '8', desc: 'Modules, each with its own badge reward' },
+      { num: 'ACTCP', desc: 'Exam preparation integrated throughout' }
+    ],
+    tools: ['Teachable LMS', 'Adobe Express', 'Scenario Design', 'Gamification Mechanics']
+  },
+  storyboard: {
+    category: 'Storyboarding',
+    title: 'High-Fidelity Storyboarding for Multi-Disciplinary Teams',
+    overview: 'I design storyboards that function as complete production blueprints — not just content outlines. They provide explicit logic for developers, clear narrative cues for voiceover talent, branching triggers for QA, and graphic placement notes for designers.',
+    challenge: 'When a storyboard is vague, every discipline fills in gaps differently — resulting in expensive post-production rework and a final product that drifts from the SME\'s original intent. My solution is radical specificity: every screen, every trigger, every feedback message, documented.',
+    process: [
+      { num: '01', title: 'Content Analysis & Strategic Mapping', body: 'Deep-dive analysis on raw SME data to identify core learning paths, ensuring every module aligns directly with measurable performance outcomes before a single screen is designed.' },
+      { num: '02', title: 'Multi-Layer Storyboard Structure', body: 'Each storyboard row contains: screen heading, on-screen text, audio/narrative script, developer instructions (interactions, triggers, JavaScript logic), and graphic placement notes — all in one document.' },
+      { num: '03', title: 'Active-Learning Architecture', body: 'I design active-learning experiences where the path is dictated by learner choice. Branching scenarios, hotspot interactions, drag-and-drop activities, and simulated AI feedback screens — all spec\'d to 1:1 build accuracy.' }
+    ],
+    impact: [
+      { num: '1:1', desc: 'SME specification to final product parity' },
+      { num: 'Zero', desc: 'Ambiguity in developer handoff documents' }
+    ],
+    tools: ['Word / Excel Storyboards', 'Articulate Storyline', 'Rise 360', 'Salesforce Simulation', 'Adobe Express']
+  },
+  infographics: {
+    category: 'Visual Design',
+    title: 'Visual Synthesis: Academic Research to Infographics',
+    overview: 'A series of research infographics distilling dense academic journal articles on game-based learning (GBL) into high-impact, digestible visual summaries — demonstrating that instructional design theory can be both rigorous and beautifully communicated.',
+    challenge: 'Academic research is essential to evidence-based instructional design, but journal articles are inaccessible to most practitioners. The goal was to translate complex theories — the MDA Framework, reward psychology, learning models — into infographics that could be shared and applied.',
+    process: [
+      { num: '01', title: 'Source Analysis', body: 'Each infographic begins with a thorough read of the original journal article, identifying the core argument, key findings, and most important concepts for practitioners to understand and apply.' },
+      { num: '02', title: 'Visual Hierarchy Design', body: 'Complex concepts (like the MDA Framework\'s three-layer model) are mapped to visual structures that mirror their relationships — hierarchies become nested layouts, processes become flows, comparisons become side-by-side panels.' },
+      { num: '03', title: 'Practitioner-Focused Framing', body: 'Every infographic ends with implications for instructional design practice — connecting theory back to the "so what" for course designers who need to apply the research, not just understand it.' }
+    ],
+    impact: [
+      { num: '3+', desc: 'Academic papers synthesised and visualised' },
+      { num: 'GBL', desc: 'Topics: MDA Framework, Rewards in DGBL, Learning Models' }
+    ],
+    tools: ['Adobe Express', 'Canva', 'Visual Hierarchy Design', 'Data Visualisation']
+  }
+};
+
+function buildModal(key) {
+  const p = projects[key];
+  if (!p) return '';
+  const processHTML = p.process.map(s => `
+    <div class="process-step">
+      <span class="step-num">${s.num}</span>
+      <div class="step-content"><h4>${s.title}</h4><p>${s.body}</p></div>
+    </div>`).join('');
+  const impactHTML = p.impact.map(i => `
+    <div class="impact-card"><span class="impact-num">${i.num}</span><span class="impact-desc">${i.desc}</span></div>`).join('');
+  const toolsHTML = p.tools.map(t => `<span class="tool-badge">${t}</span>`).join('');
+  return `
+    <div class="modal-header">
+      <div class="modal-meta">
+        <span class="modal-category">${p.category}</span>
+        <h2 class="modal-title">${p.title}</h2>
+      </div>
+      <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-label">Overview</div>
+        <p>${p.overview}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">The Challenge</div>
+        <p>${p.challenge}</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">The Process</div>
+        <div class="process-steps">${processHTML}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Impact</div>
+        <div class="impact-grid">${impactHTML}</div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Tools & Methods</div>
+        <div class="tools-row">${toolsHTML}</div>
+      </div>
+    </div>`;
+}
+
+const overlay = document.getElementById('modal-overlay');
+const content = document.getElementById('modal-content');
+
+function openModal(key) {
+  content.innerHTML = buildModal(key);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+  content.scrollTop = 0;
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.project-card').forEach(card => {
+  const open = () => openModal(card.dataset.project);
+  card.addEventListener('click', open);
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
