@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linda Kunene - Moodle Course Demo for NEC</title>
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FDFAF5;
+      --ink: #1A1A18;
+      --ink-light: #2E2E2B;
+      --ink-muted: #595950;
+      --accent: #B83010;
+      --accent-light: #F2C4B4;
+      --accent-pale: #FAF0EC;
+      --border: #D8D0C4;
+      --header-bg: #1A1A18;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Aptos, 'Aptos Display', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--header-bg);
+      color: #FDFAF5;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 40px 56px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-label {
+      font-family: Aptos, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent-light);
+    }
+
+    header h1 {
+      font-family: Aptos, 'Aptos Display', Arial, sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #FDFAF5;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    header h1 span.highlight {
+      color: var(--accent-light);
+    }
+
+    .header-sub {
+      font-size: 1rem;
+      color: rgba(253,250,245,0.7);
+      margin-top: 16px;
+      font-weight: 400;
+    }
+
+    /* LETTER */
+    .letter {
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .letter-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 40px;
+    }
+
+    .letter-date {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .letter-inner p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ink-light);
+      margin-bottom: 20px;
+    }
+
+    .letter-inner p strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .letter-inner p.salutation {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .letter-inner p.sign-off {
+      margin-top: 36px;
+      margin-bottom: 4px;
+      color: var(--ink-light);
+    }
+
+    .letter-inner p.signature {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .letter-inner p.sig-title {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+    }
+
+    .letter-inner a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .letter-inner a:hover {
+      text-decoration: underline;
+    }
+
+    /* SECTIONS */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 72px 40px;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-family: Aptos, 'Aptos Display', Arial, sans-serif;
+      font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .section > p, .section-body p {
+      font-size: 1rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      max-width: 660px;
+      margin-bottom: 16px;
+    }
+
+    /* STATS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .stat {
+      background: var(--warm-white);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .gallery.cols-2 { grid-template-columns: 1fr 1fr; }
+    .gallery.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .gallery.cols-1 { grid-template-columns: 1fr; max-width: 720px; }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      cursor: zoom-in;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .gallery-item .caption {
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--border);
+      line-height: 1.4;
+    }
+
+    .gallery-item .caption strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 2px;
+      font-size: 0.82rem;
+    }
+
+    /* CALLOUT */
+    .callout {
+      background: var(--accent-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin: 32px 0;
+      max-width: 660px;
+    }
+
+    .callout p {
+      font-size: 0.95rem !important;
+      color: var(--ink) !important;
+      margin: 0 !important;
+      line-height: 1.65 !important;
+    }
+
+    .callout p strong {
+      color: var(--accent) !important;
+      font-weight: 700 !important;
+    }
+
+    /* FEATURE LIST */
+    .feature-list {
+      list-style: none;
+      margin: 24px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 660px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.5;
+    }
+
+    .feature-list li::before {
+      content: 'v';
+      font-family: Arial, sans-serif;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 0.85rem;
+      /* render as checkmark */
+      content: '\2713';
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 16px 0 28px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--header-bg);
+      color: #FDFAF5;
+      padding: 72px 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: Aptos, 'Aptos Display', Arial, sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: #FDFAF5;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      color: rgba(253,250,245,0.72);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .cta-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: Aptos, Arial, sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #962808; }
+
+    .btn-secondary {
+      background: transparent;
+      color: #FDFAF5;
+      border: 1px solid rgba(253,250,245,0.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(253,250,245,0.85);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.93);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      color: rgba(253,250,245,0.8);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.15s;
+      background: none;
+      border: none;
+      font-family: Arial, sans-serif;
+    }
+
+    .lightbox-close:hover { color: #fff; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .header-inner, .letter-inner, .section { padding-left: 24px; padding-right: 24px; }
+      .gallery.cols-2, .gallery.cols-3 { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .feature-list { grid-template-columns: 1fr; }
+      .cta-section { padding: 56px 24px; }
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-label">Prepared for NEC &middot; June 2026</div>
+      <h1>A Moodle course built for <span class="highlight">NEC</span>, from scratch.</h1>
+      <p class="header-sub">Linda Kunene &middot; Instructional Designer &middot; Johannesburg</p>
+    </div>
+  </header>
+
+  <!-- PERSONAL LETTER -->
+  <section class="letter">
+    <div class="letter-inner fade-in">
+      <p class="letter-date">June 2026</p>
+      <p class="salutation">Dear Esther,</p>
+      <p>
+        When I came across the freelance Moodle course developer role at NEC, I was immediately drawn to it. The work sits right at the intersection of what I do: taking structured content and designing learning experiences that actually help people progress.
+      </p>
+      <p>
+        The honest part: I had not used Moodle before. Rather than let that be a reason not to apply, I decided to spend a day learning it properly and building something real.
+      </p>
+      <p>
+        What you will find below is a complete Moodle course module built on NEC's own subject area, in a style informed by NEC's platform, and designed with the kind of learner NEC serves in mind. It covers the features your role calls for: <strong>H5P interactive activities, embedded multimedia, adaptive quizzing with conditional feedback, completion tracking, and a full learner journey tested from the student view.</strong>
+      </p>
+      <p>
+        I built it in a day. I am confident that with your actual content and a bit more time, I can do a great deal more.
+      </p>
+      <p>
+        I would genuinely enjoy the chance to talk with you about this role.
+      </p>
+      <p class="sign-off">Kind regards,</p>
+      <p class="signature">Linda Kunene</p>
+      <p class="sig-title">Instructional Designer &nbsp;&middot;&nbsp; <a href="https://linda999.github.io/portfolio/index.html" target="_blank">Portfolio</a> &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/lindakunene/" target="_blank">LinkedIn</a></p>
+    </div>
+  </section>
+
+  <!-- SECTION 1: THE BRIEF -->
+  <section style="background: var(--warm-white);">
+    <div class="section fade-in">
+      <p class="section-label">01 &mdash; The Brief</p>
+      <h2>One day. No prior Moodle experience. One complete course unit.</h2>
+      <div class="divider"></div>
+      <p>The goal was straightforward: prove I could get up to speed on Moodle quickly and build something that could realistically sit on NEC's platform, in NEC's subject area, with NEC's learners in mind.</p>
+      <p>The course is <strong>GCSE English Language Module 1: Reading and Writing Skills</strong>, covering reading for meaning and inference. It follows the same kind of structured, self-paced approach NEC uses across its distance learning programmes.</p>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Day to build</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Prior Moodle experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Moodle features demonstrated</div>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li>Structured course with section-based navigation</li>
+        <li>H5P interactive reading activities</li>
+        <li>Embedded instructional video</li>
+        <li>Adaptive quiz with conditional feedback</li>
+        <li>80% pass mark with 3-attempt limit</li>
+        <li>Completion tracking and grades view</li>
+        <li>Visual style informed by NEC's platform</li>
+        <li>Full learner journey tested in student mode</li>
+      </ul>
+
+      <div class="gallery cols-2">
+        <div class="gallery-item">
+          <img src="001_course_overview_screen.png" alt="MoodleCloud course overview screen showing GCSE English Language module" loading="lazy" />
+          <div class="caption"><strong>Course Library</strong>GCSE English Language Module 1 live on MoodleCloud</div>
+        </div>
+        <div class="gallery-item">
+          <img src="002_welcome_course_screen.png" alt="Course welcome screen with introduction text and unit navigation" loading="lazy" />
+          <div class="caption"><strong>Welcome Screen</strong>Course introduction with warm, learner-facing tone and clear structure</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: COURSE STRUCTURE -->
+  <section style="background: var(--cream);">
+    <div class="section fade-in">
+      <p class="section-label">02 &mdash; Course Structure</p>
+      <h2>A complete, navigable unit, not a skeleton.</h2>
+      <div class="divider"></div>
+      <p>The course is organised into clearly labelled sections with a persistent sidebar so learners always know where they are. Completion indicators give real-time progress feedback as learners work through the unit.</p>
+
+      <div class="callout">
+        <p><strong>Design note:</strong> The sidebar structure mirrors the kind of navigation pattern NEC learners will recognise: section headings, nested activity titles, and completion status visible at a glance. The intention was to make the experience feel familiar from the first click.</p>
+      </div>
+
+      <div class="gallery cols-2">
+        <div class="gallery-item">
+          <img src="activities_screen.png" alt="Activities overview showing H5P, Quiz, and Resource types" loading="lazy" />
+          <div class="caption"><strong>Activities Overview</strong>H5P, Quiz, and Resource activity types all included in the unit</div>
+        </div>
+        <div class="gallery-item">
+          <img src="grades_screen.png" alt="Gradebook showing quiz and H5P results for Linda Kunene" loading="lazy" />
+          <div class="caption"><strong>Grades View</strong>Full gradebook showing quiz and H5P scores for the enrolled student</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: LESSON CONTENT -->
+  <section style="background: var(--warm-white);">
+    <div class="section fade-in">
+      <p class="section-label">03 &mdash; Lesson Content and Activities</p>
+      <h2>Reading skills, embedded video, and H5P in one unit.</h2>
+      <div class="divider"></div>
+      <p>The lesson opens with a structured reading passage and guided comprehension questions, walking learners through explicit and implicit reading strategies. An embedded video supports different learning preferences, and the H5P activities let learners check their understanding through interactive, self-marking exercises.</p>
+
+      <div class="gallery cols-2">
+        <div class="gallery-item">
+          <img src="reading_skills_instructions.png" alt="Reading skills lesson with instructional text and comprehension questions" loading="lazy" />
+          <div class="caption"><strong>Reading Skills Lesson</strong>Instructional text with guided questions and model answer guidance</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_skills_instructions_2.png" alt="Second reading passage with explicit and implicit information tasks" loading="lazy" />
+          <div class="caption"><strong>Lesson Continued</strong>Second reading passage with explicit and implicit information tasks</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_skills_embedded_video.png" alt="YouTube instructional video embedded in the lesson page" loading="lazy" />
+          <div class="caption"><strong>Embedded Video</strong>YouTube video embedded directly in the lesson flow</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_skills_embedded_video_2.png" alt="Video shown in context within the broader lesson" loading="lazy" />
+          <div class="caption"><strong>Video in Context</strong>The video sits within the lesson rather than as a standalone resource</div>
+        </div>
+      </div>
+
+      <div class="gallery cols-2" style="margin-top: 16px;">
+        <div class="gallery-item">
+          <img src="reading_check_h5p_activity.png" alt="H5P interactive reading comprehension activity" loading="lazy" />
+          <div class="caption"><strong>H5P Activity</strong>Interactive reading comprehension check with immediate feedback</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_check_h5p_activity_2.png" alt="H5P Select Missing Words question" loading="lazy" />
+          <div class="caption"><strong>H5P Question 2</strong>Select Missing Words activity testing implicit and explicit terminology</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_check_h5p_activity_3.png" alt="H5P inference question with multiple choice" loading="lazy" />
+          <div class="caption"><strong>H5P Question 3</strong>Inference question with multiple choice and answer rationale</div>
+        </div>
+        <div class="gallery-item">
+          <img src="reading_check_h5p_activity_4.png" alt="H5P results screen" loading="lazy" />
+          <div class="caption"><strong>H5P Results</strong>Learner sees their score immediately and can retry if needed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: QUIZ DESIGN -->
+  <section style="background: var(--cream);">
+    <div class="section fade-in">
+      <p class="section-label">04 &mdash; Quiz Design</p>
+      <h2>Adaptive, conditional, and learner-centred.</h2>
+      <div class="divider"></div>
+      <p>The Unit 1 quiz uses 5 questions across three formats (multiple choice, matching, and select missing words), with an 80% pass threshold, a 3-attempt limit, and conditional feedback that responds differently depending on whether the learner passes or fails.</p>
+
+      <div class="callout">
+        <p><strong>Design note:</strong> Three attempts and then a "revisit the unit" consequence, not unlimited retries. Learners who have not passed after three attempts should go back to the material, not keep clicking through. That felt like the right call for this kind of self-paced distance learning context.</p>
+      </div>
+
+      <div class="gallery cols-2">
+        <div class="gallery-item">
+          <img src="quiz_instructions.png" alt="Quiz instructions showing pass mark, attempt limit, and grading method" loading="lazy" />
+          <div class="caption"><strong>Quiz Instructions</strong>Pass mark, attempt limit, and grading method communicated upfront</div>
+        </div>
+        <div class="gallery-item">
+          <img src="q1_and_q2.png" alt="Quiz questions 1 and 2 showing multiple choice and matching formats" loading="lazy" />
+          <div class="caption"><strong>Questions 1 and 2</strong>Multiple choice and matching question formats</div>
+        </div>
+        <div class="gallery-item">
+          <img src="q3.png" alt="Quiz question 3 showing select missing words format" loading="lazy" />
+          <div class="caption"><strong>Question 3</strong>Select missing words testing implicit and explicit information in context</div>
+        </div>
+        <div class="gallery-item">
+          <img src="q4_and_q5.png" alt="Quiz questions 4 and 5 covering inference and analysis" loading="lazy" />
+          <div class="caption"><strong>Questions 4 and 5</strong>Inference and analysis questions rounding out the unit check</div>
+        </div>
+      </div>
+
+      <div class="gallery cols-2" style="margin-top: 16px;">
+        <div class="gallery-item">
+          <img src="quiz_confirm_submission_of_results.png" alt="Moodle submission confirmation screen" loading="lazy" />
+          <div class="caption"><strong>Submission Confirmation</strong>Moodle prompts the learner to confirm before final submission</div>
+        </div>
+        <div class="gallery-item">
+          <img src="quiz_summary_of_attempt.png" alt="Full question-by-question review after submission" loading="lazy" />
+          <div class="caption"><strong>Attempt Summary</strong>Full question-by-question review available after submission</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: RESULTS -->
+  <section style="background: var(--warm-white);">
+    <div class="section fade-in">
+      <p class="section-label">05 &mdash; Results and Learner Journey</p>
+      <h2>The full journey, tested end-to-end in student mode.</h2>
+      <div class="divider"></div>
+      <p>Every screenshot in this section was captured while enrolled as a student, not as an admin. The course was completed in full, the quiz was attempted and passed, and the results and grades views were recorded as a real learner would see them.</p>
+
+      <div class="gallery cols-2">
+        <div class="gallery-item">
+          <img src="quiz_results_1.png" alt="Quiz results page showing pass status and highest grade" loading="lazy" />
+          <div class="caption"><strong>Quiz Results Page</strong>Pass status, attempts used, and highest grade all visible</div>
+        </div>
+        <div class="gallery-item">
+          <img src="quiz_results_2.png" alt="Results detail with conditional feedback for passing score" loading="lazy" />
+          <div class="caption"><strong>Results Detail</strong>Grade breakdown with conditional feedback triggered by the passing score</div>
+        </div>
+        <div class="gallery-item">
+          <img src="quiz_pass_q1.png" alt="Passing attempt with correct answer highlighted in green" loading="lazy" />
+          <div class="caption"><strong>Passing Attempt: Q1</strong>Correct answer highlighted in green during the results review</div>
+        </div>
+        <div class="gallery-item">
+          <img src="quiz_pass_q5.png" alt="Passing attempt question 5 with full answer review" loading="lazy" />
+          <div class="caption"><strong>Passing Attempt: Q5</strong>Full answer review available to the learner after submission</div>
+        </div>
+      </div>
+
+      <div class="gallery cols-1" style="margin-top: 16px;">
+        <div class="gallery-item">
+          <img src="grades_screen.png" alt="Student gradebook showing quiz and H5P results for Linda Kunene" loading="lazy" />
+          <div class="caption"><strong>Gradebook: Student View</strong>Grade report showing quiz and H5P results in the full gradebook</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FOOTER -->
+  <div class="cta-section fade-in">
+    <h2>I would love to hear from you.</h2>
+    <p>If this work is along the lines of what you are looking for at NEC, I would be happy to talk.</p>
+    <div class="cta-links">
+      <a href="https://www.linkedin.com/in/lindakunene/" class="btn btn-primary" target="_blank">Connect on LinkedIn</a>
+      <a href="https://linda999.github.io/portfolio/index.html" class="btn btn-secondary" target="_blank">View Full Portfolio</a>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <img src="" alt="" id="lightboxImg" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
