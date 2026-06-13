@@ -430,18 +430,20 @@ const PROJECTS = [
   },
   {
     id:'vyond', cat:'storyboarding', catLabel:'Storyboarding & Prototyping',
-    title:'Rapid eLearning Prototype: Risk Assessment Animation',
-    summary:'A rapid prototype built for a recruitment assessment to demonstrate storyboarding, visual learning design, and microlearning-style explanation using Vyond animation.',
-    img:'https://lindakunene99.wordpress.com/wp-content/uploads/2026/01/training-video_b.png',
-    tools:['Vyond','Storyboarding','Microlearning Design'],
-    kv:[{l:'Context',v:'Recruitment assessment'},{l:'Format',v:'Animated microlearning'}],
-    note:'This prototype was created for a role application assessment and carries a watermark from the trial export. It is included to demonstrate rapid prototyping process and visual learning design capability.',
+    title:'Vyond Animation: Introduction to Prescribed Minimum Benefits',
+    summary:'An animated microlearning piece built as the narrative anchor for a 10-minute onboarding module for Medihelp — designed to make new employees care about PMBs before the content answers their questions.',
+    img:'https://img.youtube.com/vi/iJUVE79ibKY/hqdefault.jpg',
+    videoEmbed:'https://www.youtube.com/embed/iJUVE79ibKY',
+    tools:['Vyond','Eleven Labs','Storyboarding','Microlearning Design','AI Tools'],
+    kv:[{l:'Context',v:'Technical assessment — Medihelp'},{l:'Format',v:'Animated explainer (~90 sec)'}],
+    note:null,
     screenshots:null,
     sections:[
-      {t:'Context & purpose',p:'This sample was developed for a role application assessment requiring a short learning asset that demonstrates clear explanation, logical sequencing, and professional visual execution, within a constrained timeframe.'},
-      {t:'Topic',p:'Risk assessment in a construction site scenario, structured as a short animated microlearning piece covering: context → key risk concept → what to look for → appropriate response.'},
-      {t:'My approach',li:['Mapped the scene sequence in a storyboard before building in Vyond to ensure logical flow before investing production time.','Structured content for clarity: short scenes, minimal on-screen clutter, consistent visual style.','Applied microlearning pacing principles: plain-language narration, visual cues reinforcing key points, tight overall runtime.']},
-      {t:'Note on the watermark',p:'The export carries a watermark because it was created in a Vyond trial. The example demonstrates the design and prototyping process rather than a final production export.'}
+      {t:'Context & purpose',p:'The brief required a 10-minute interactive training presentation on Prescribed Minimum Benefits (PMB) for new Medihelp employees, with no assumed prior knowledge. The animation serves as the emotional and narrative hook for the full module — not standalone content, but the moment that makes a new employee care about the material before they learn it.'},
+      {t:'Design approach',p:'Rather than opening with definitions, the animation follows Thembi, a fictional Medihelp member who collapses at her office and is rushed to a non-network hospital. The narrative was structured deliberately to create a question in the learner\'s mind before the content answers it. Scene sequencing followed a storyboard drafted before any production began, with voice-over scripted for Eleven Labs and pacing designed scene by scene to give the freeze-frame ending enough time to land.'},
+      {t:'How it fits the full module',p:'The animation feeds into a Rise + Storyline module built around a progressive disclosure mechanic: Thembi\'s case file is revealed section by section as the learner works through PMB content. A WWYDI (What Would You Do If?) cold question asked at the start is revisited at the end — a predict-then-learn structure grounded in evidence on recall.'},
+      {t:'AI tools used',li:['Vyond — animation and scene construction','Eleven Labs — voice-over narration (South African English, warm and grounded tone)','AI-assisted script development — production script written scene by scene before any build began, with V/O, on-screen text, and Vyond directions in a single table']},
+      {t:'Tool rationale',p:'Each tool was chosen for a specific learning function, not to showcase tools for their own sake. Vyond for narrative weight and emotional grounding; Eleven Labs for consistent, professional audio at a pace a trial build could not otherwise achieve.'}
     ]
   }
 ];
@@ -553,7 +555,7 @@ function openModal(id){
     <div class="modal-body">
       ${noteHtml}
       <div class="modal-kv-row">${kvHtml}</div>
-      ${secHtml}${shotHtml}${toolsHtml}
+      ${videoHtml}${secHtml}${shotHtml}${toolsHtml}
     </div>`;
   mEl.querySelectorAll('.mgallery img').forEach(img=>{
     img.addEventListener('click',()=>openLightbox(img.src,img.alt));
