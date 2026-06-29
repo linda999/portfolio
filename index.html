@@ -500,7 +500,6 @@ function renderCards(filter){
       <p>${p.summary}</p>${noteHtml}
       <div class="card-foot">
         <div class="card-chips">${p.tools.slice(0,2).map(t=>`<span class="chip">${t}</span>`).join('')}</div>
-        <span class="card-cta" aria-hidden="true">Read more →</span>
       </div></div>`;
     const open=()=>openModal(p.id);
     card.addEventListener('click',open);
@@ -536,7 +535,8 @@ function openModal(id){
   if(!p)return;
   lastFocus=document.activeElement;
   const kvHtml=p.kv.map(k=>`<div class="kv"><div class="kv-label">${k.l}</div><div class="kv-val">${k.v}</div></div>`).join('');
-  const noteHtml=p.note?`<div class="modal-note">ℹ ${p.note}</div>`:'';
+   const noteHtml=p.note?`<div class="modal-note">ℹ ${p.note}</div>`:'';
+  const videoHtml=p.videoEmbed?`<div class="msec"><div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:6px;margin-bottom:8px"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="${p.videoEmbed}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div></div>`:'';
   const secHtml=p.sections.map(s=>{
     const body=s.li
       ?`<ul class="mlist">${s.li.map(i=>`<li>${i}</li>`).join('')}</ul>`
